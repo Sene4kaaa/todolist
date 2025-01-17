@@ -17,9 +17,13 @@ export const App = () => {
         {id: 6, title: 'RTK query', isDone: false},
     ]
 
+    const deleteTask = (taskId: number) => {
+        alert(taskId)
+    }
+
     return (
         <div className="app">
-            <TodolistItem title="What to learn" tasks={tasks}/>
+            <TodolistItem title="What to learn" tasks={tasks} deleteTask={deleteTask}/>
         </div>
     )
 }
