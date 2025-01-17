@@ -1,11 +1,11 @@
-import type {FilterType, Task} from './App'
+import type {Filter, Task} from './App'
 import {Button} from './Button'
 
 type Props = {
     title: string
     tasks: Task[]
     deleteTask: (id: number) => void
-    changeFilter: (value: FilterType) => void
+    changeFilter: (value: Filter) => void
 }
 
 export const TodolistItem = ({title, tasks, deleteTask, changeFilter}: Props) => {

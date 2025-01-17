@@ -7,7 +7,7 @@ export type Task = {
     title: string
     isDone: boolean
 }
-export type FilterType = 'All' | 'Active' | 'Completed'
+export type Filter = 'All' | 'Active' | 'Completed'
 
 export const App = () => {
     const [tasks, setTasks] = useState<Array<Task>>([
@@ -19,7 +19,7 @@ export const App = () => {
         {id: 6, title: 'RTK query', isDone: false},
     ])
 
-    const [filter, setFilter] = useState<FilterType>('All')
+    const [filter, setFilter] = useState<Filter>('All')
 
     let filteredTasks = tasks
     if (filter === 'Active') {
@@ -29,7 +29,7 @@ export const App = () => {
         filteredTasks = tasks.filter(task => task.isDone)
     }
 
-    const changeFilter = (newFilter: FilterType) => {
+    const changeFilter = (newFilter: Filter) => {
         setFilter(newFilter)
     }
 
