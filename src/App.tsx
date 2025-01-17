@@ -34,8 +34,8 @@ export const App = () => {
     }
 
     const deleteTask = (taskId: number) => {
-        const filteredTasks = tasks.filter(task => task.id !== taskId)
-        setTasks(filteredTasks)
+        const newTasks = tasks.filter(task => task.id !== taskId)
+        setTasks(newTasks)
     }
 
     return (
