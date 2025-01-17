@@ -1,7 +1,7 @@
 type Props = {
-  title: string
+    title: string
 }
 
-export const Button = ({ title }: Props) => {
-  return <button>{title}</button>
+export const Button = ({title}: Props) => {
+    return <button className={'button'}>{title}</button>
 }
