@@ -7,6 +7,7 @@ export type Task = {
     title: string
     isDone: boolean
 }
+export type FilterType = 'All' | 'Active' | 'Completed'
 
 export const App = () => {
     const [tasks, setTasks] = useState<Array<Task>>([
@@ -18,15 +19,31 @@ export const App = () => {
         {id: 6, title: 'RTK query', isDone: false},
     ])
 
+    const [filter, setFilter] = useState<FilterType>('All')
+
+    let filteredTasks = tasks
+    if (filter === 'Active') {
+        filteredTasks = tasks.filter(task => !task.isDone)
+    }
+    if (filter === 'Completed') {
+        filteredTasks = tasks.filter(task => task.isDone)
+    }
+
+    const changeFilter = (newFilter: FilterType) => {
+        setFilter(newFilter)
+    }
 
     const deleteTask = (taskId: number) => {
-        const filteredTask = tasks.filter(task => task.id !== taskId)
-        setTasks(filteredTask)
+        const filteredTasks = tasks.filter(task => task.id !== taskId)
+        setTasks(filteredTasks)
     }
 
     return (
         <div className="app">
-            <TodolistItem title="What to learn" tasks={tasks} deleteTask={deleteTask}/>
+            <TodolistItem title="What to learn"
+                          tasks={filteredTasks}
+                          deleteTask={deleteTask}
+                          changeFilter={changeFilter}/>
         </div>
     )
 }
