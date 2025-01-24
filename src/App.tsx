@@ -3,7 +3,7 @@ import {TodolistItem} from './TodolistItem'
 import {useState} from "react";
 import {v1} from "uuid";
 
-export type Task = {
+export type TaskPropsType = {
     id: string
     title: string
     isDone: boolean
@@ -11,7 +11,7 @@ export type Task = {
 export type Filter = 'All' | 'Active' | 'Completed'
 
 export const App = () => {
-    const [tasks, setTasks] = useState<Array<Task>>([
+    const [tasks, setTasks] = useState<Array<TaskPropsType>>([
         {id: v1(), title: 'HTML&CSS', isDone: true},
         {id: v1(), title: 'JS', isDone: true},
         {id: v1(), title: 'ReactJS', isDone: false},
