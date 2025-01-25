@@ -19,7 +19,7 @@ export const TodolistItem = ({title, tasks, deleteTask, changeFilter, createTask
     }
 
     const createTaskOnEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.keyCode === 13) {
+        if (e.key === 'Enter') {
             createTaskHandler()
         }
     }
