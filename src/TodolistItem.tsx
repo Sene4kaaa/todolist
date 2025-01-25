@@ -11,7 +11,14 @@ type TodolistItemPropsType = {
     changeTaskStatus: (taskId: string, isDone: boolean) => void
 }
 
-export const TodolistItem = ({title, tasks, deleteTask, changeFilter, createTask,changeTaskStatus}: TodolistItemPropsType) => {
+export const TodolistItem = ({
+                                 title,
+                                 tasks,
+                                 deleteTask,
+                                 changeFilter,
+                                 createTask,
+                                 changeTaskStatus
+                             }: TodolistItemPropsType) => {
 
     const [taskTitle, setTaskTitle] = useState('')
 
@@ -26,8 +33,10 @@ export const TodolistItem = ({title, tasks, deleteTask, changeFilter, createTask
     }
 
     const createTaskHandler = () => {
-        createTask(taskTitle)
-        setTaskTitle('')
+        if (taskTitle.trim() !== '') {
+            createTask(taskTitle)
+            setTaskTitle('')
+        }
     }
 
 
