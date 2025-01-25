@@ -50,7 +50,6 @@ export const App = () => {
         setTasks(newState)
     }
 
-
     return (
         <div className="app">
             <TodolistItem title="What to learn"
