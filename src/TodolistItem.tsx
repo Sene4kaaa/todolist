@@ -9,6 +9,7 @@ type TodolistItemPropsType = {
     changeFilter: (value: Filter) => void
     createTask: (taskTitle: string) => void
     changeTaskStatus: (taskId: string, isDone: boolean) => void
+    filter: Filter
 }
 
 export const TodolistItem = ({
@@ -17,7 +18,8 @@ export const TodolistItem = ({
                                  deleteTask,
                                  changeFilter,
                                  createTask,
-                                 changeTaskStatus
+                                 changeTaskStatus,
+                                 filter
                              }: TodolistItemPropsType) => {
 
     const [taskTitle, setTaskTitle] = useState('')
@@ -39,7 +41,7 @@ export const TodolistItem = ({
         if (trimmedTitle !== '') {
             createTask(trimmedTitle)
             setTaskTitle('')
-        } else{
+        } else {
             setError('Title is required')
         }
     }
@@ -89,9 +91,12 @@ export const TodolistItem = ({
                 </ul>
             )}
             <div>
-                <Button title={'All'} onClick={() => changeFilter("All")}/>
-                <Button title={'Active'} onClick={() => changeFilter("Active")}/>
-                <Button title={'Completed'} onClick={() => changeFilter("Completed")}/>
+                <Button className={filter === 'All' ? 'active-filter' : ''} title={'All'}
+                        onClick={() => changeFilter("All")}/>
+                <Button className={filter === 'Active' ? 'active-filter' : ''} title={'Active'}
+                        onClick={() => changeFilter("Active")}/>
+                <Button className={filter === 'Completed' ? 'active-filter' : ''} title={'Completed'}
+                        onClick={() => changeFilter("Completed")}/>
 
             </div>
         </div>
