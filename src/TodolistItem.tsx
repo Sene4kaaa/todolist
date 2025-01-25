@@ -35,7 +35,7 @@ export const TodolistItem = ({
     const createTaskHandler = () => {
         const trimmedTitle = taskTitle.trim()
         if (trimmedTitle !== '') {
-            createTask(taskTitle)
+            createTask(trimmedTitle)
             setTaskTitle('')
         }
     }
