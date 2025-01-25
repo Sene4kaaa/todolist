@@ -10,3 +10,11 @@
 .button {
     margin-left: 10px;
 }
+
+.error {
+    border: red 1px solid;
+}
+
+.error-message {
+    color: red;
+}
