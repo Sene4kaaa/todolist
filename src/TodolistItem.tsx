@@ -9,7 +9,7 @@ type TodolistItem = {
     deleteTask: (todolistId: string, taskId: string) => void
     changeFilter: (todolistId: string, filter: Filter) => void
     createTask: (todolistId: string, taskTitle: string) => void
-    changeTaskStatus: (taskId: string, isDone: boolean) => void
+    changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
 
 }
 
@@ -80,7 +80,7 @@ export const TodolistItem = ({
                         }
                         const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
                             const newStatusValue = e.currentTarget.checked
-                            changeTaskStatus(task.id, newStatusValue)
+                            changeTaskStatus(id, task.id, newStatusValue)
                         }
 
                         return (
