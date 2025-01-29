@@ -48,6 +48,10 @@ export const TodolistItem = ({
         }
     }
 
+    const changeFilterHandler = (filter: Filter) => {
+        changeFilter(id, filter)
+    }
+
 
     return (
         <div>
@@ -94,11 +98,11 @@ export const TodolistItem = ({
             )}
             <div>
                 <Button className={filter === 'all' ? 'active-filter' : ''} title={'All'}
-                        onClick={() => changeFilter(id, "all")}/>
+                        onClick={() => changeFilterHandler('all')}/>
                 <Button className={filter === 'active' ? 'active-filter' : ''} title={'Active'}
-                        onClick={() => changeFilter(id, "active")}/>
+                        onClick={() => changeFilterHandler("active")}/>
                 <Button className={filter === 'completed' ? 'active-filter' : ''} title={'Completed'}
-                        onClick={() => changeFilter(id, "completed")}/>
+                        onClick={() => changeFilterHandler("completed")}/>
 
             </div>
         </div>
