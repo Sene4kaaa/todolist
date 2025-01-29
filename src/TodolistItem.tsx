@@ -10,6 +10,7 @@ type TodolistItem = {
     changeFilter: (todolistId: string, filter: Filter) => void
     createTask: (todolistId: string, taskTitle: string) => void
     changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
+    deleteTodolist: (todolistId: string) => void
 
 }
 
@@ -20,6 +21,7 @@ export const TodolistItem = ({
                                  changeFilter,
                                  createTask,
                                  changeTaskStatus,
+                                 deleteTodolist
                              }: TodolistItem) => {
 
 
@@ -51,10 +53,16 @@ export const TodolistItem = ({
         changeFilter(id, filter)
     }
 
+    const deleteTodolistHandler = () => {
+        deleteTodolist(id)
+    }
 
     return (
         <div>
-            <h3>{title}</h3>
+            <div className={'container'}>
+                <h3>{title}</h3>
+                <Button title={'x'} onClick={deleteTodolistHandler}/>
+            </div>
             <div>
                 <input
                     className={error ? 'error' : ''}
