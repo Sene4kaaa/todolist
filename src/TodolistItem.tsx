@@ -94,11 +94,11 @@ export const TodolistItem = ({
             )}
             <div>
                 <Button className={filter === 'all' ? 'active-filter' : ''} title={'All'}
-                        onClick={() => changeFilter("all", id)}/>
+                        onClick={() => changeFilter(id, "all")}/>
                 <Button className={filter === 'active' ? 'active-filter' : ''} title={'Active'}
-                        onClick={() => changeFilter("active", id)}/>
+                        onClick={() => changeFilter(id, "active")}/>
                 <Button className={filter === 'completed' ? 'active-filter' : ''} title={'Completed'}
-                        onClick={() => changeFilter("completed", id)}/>
+                        onClick={() => changeFilter(id, "completed")}/>
 
             </div>
         </div>
