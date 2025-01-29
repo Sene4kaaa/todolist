@@ -3,7 +3,7 @@ import {TodolistItem} from './TodolistItem'
 import {useState} from "react";
 import {v1} from "uuid";
 
-type Todolist = {
+export type Todolist = {
     id: string
     title: string
     filter: Filter
@@ -68,14 +68,13 @@ export const App = () => {
                 return (
                     <TodolistItem
                         key={todolist.id}
-                        todolistId={todolist.id}
-                        title={todolist.title}
+                        todolist={todolist}
                         tasks={filteredTasks}
                         deleteTask={deleteTask}
                         changeFilter={changeFilter}
                         createTask={createTask}
                         changeTaskStatus={changeTaskStatus}
-                        filter={todolist.filter}
+
                     />
                 )
             })}

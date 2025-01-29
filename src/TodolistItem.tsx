@@ -1,27 +1,24 @@
-import type {Filter, Task} from './App'
+import {Filter, Task, Todolist} from './App'
 import {Button} from './Button'
 import {KeyboardEvent, ChangeEvent, useState} from "react";
 
 type TodolistItem = {
-    todolistId: string
-    title: string
+    todolist: Todolist
     tasks: Task[]
     deleteTask: (id: string) => void
     changeFilter: (todolistId: string, filter: Filter) => void
     createTask: (taskTitle: string) => void
     changeTaskStatus: (taskId: string, isDone: boolean) => void
-    filter: Filter
+
 }
 
 export const TodolistItem = ({
-                                 todolistId,
-                                 title,
+                                 todolist: {id, title, filter},
                                  tasks,
                                  deleteTask,
                                  changeFilter,
                                  createTask,
                                  changeTaskStatus,
-                                 filter
                              }: TodolistItem) => {
 
 
@@ -50,7 +47,7 @@ export const TodolistItem = ({
     }
 
     const changeFilterHandler = (filter: Filter) => {
-        changeFilter(todolistId, filter)
+        changeFilter(id, filter)
     }
 
 
