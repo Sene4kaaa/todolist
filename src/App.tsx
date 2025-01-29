@@ -68,7 +68,7 @@ export const App = () => {
                 return (
                     <TodolistItem
                         key={todolist.id}
-                        id={todolist.id}
+                        todolistId={todolist.id}
                         title={todolist.title}
                         tasks={filteredTasks}
                         deleteTask={deleteTask}

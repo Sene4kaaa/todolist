@@ -3,7 +3,7 @@ import {Button} from './Button'
 import {KeyboardEvent, ChangeEvent, useState} from "react";
 
 type TodolistItem = {
-    id: string
+    todolistId: string
     title: string
     tasks: Task[]
     deleteTask: (id: string) => void
@@ -14,7 +14,7 @@ type TodolistItem = {
 }
 
 export const TodolistItem = ({
-                                 id,
+                                 todolistId,
                                  title,
                                  tasks,
                                  deleteTask,
@@ -50,7 +50,7 @@ export const TodolistItem = ({
     }
 
     const changeFilterHandler = (filter: Filter) => {
-        changeFilter(id, filter)
+        changeFilter(todolistId, filter)
     }
 
 
