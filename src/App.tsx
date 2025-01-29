@@ -64,14 +64,20 @@ export const App = () => {
 
     return (
         <div className="app">
-            <TodolistItem title="What to learn"
-                          tasks={filteredTasks}
-                          deleteTask={deleteTask}
-                          changeFilter={changeFilter}
-                          createTask={createTask}
-                          changeTaskStatus={changeTaskStatus}
-                          filter={filter}
-            />
+            {todolists.map(todolist => {
+                return (
+                    <TodolistItem
+                        key={todolist.id}
+                        title={todolist.title}
+                        tasks={filteredTasks}
+                        deleteTask={deleteTask}
+                        changeFilter={changeFilter}
+                        createTask={createTask}
+                        changeTaskStatus={changeTaskStatus}
+                        filter={filter}
+                    />
+                )
+            })}
         </div>
     )
 }
