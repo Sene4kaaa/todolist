@@ -8,7 +8,7 @@ type TodolistItem = {
     tasks: Task[]
     deleteTask: (todolistId: string, taskId: string) => void
     changeFilter: (todolistId: string, filter: Filter) => void
-    createTask: (taskTitle: string) => void
+    createTask: (todolistId: string, taskTitle: string) => void
     changeTaskStatus: (taskId: string, isDone: boolean) => void
 
 }
@@ -40,7 +40,7 @@ export const TodolistItem = ({
     const createTaskHandler = () => {
         const trimmedTitle = taskTitle.trim()
         if (trimmedTitle !== '') {
-            createTask(trimmedTitle)
+            createTask(id, trimmedTitle)
             setTaskTitle('')
         } else {
             setError('Title is required')
