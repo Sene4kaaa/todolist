@@ -2,10 +2,11 @@ import {Filter, Task, Todolist} from './App'
 import {Button} from './Button'
 import {KeyboardEvent, ChangeEvent, useState} from "react";
 
+
 type TodolistItem = {
     todolist: Todolist
     tasks: Task[]
-    deleteTask: (id: string) => void
+    deleteTask: (todolistId: string, taskId: string) => void
     changeFilter: (todolistId: string, filter: Filter) => void
     createTask: (taskTitle: string) => void
     changeTaskStatus: (taskId: string, isDone: boolean) => void
@@ -75,7 +76,7 @@ export const TodolistItem = ({
                     {tasks.map(task => {
 
                         const deleteTaskHandler = () => {
-                            deleteTask(task.id)
+                            deleteTask(id, task.id)
                         }
                         const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
                             const newStatusValue = e.currentTarget.checked
