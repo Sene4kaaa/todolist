@@ -1,6 +1,6 @@
 import {Filter, Task, Todolist} from './App'
 import {Button} from './Button'
-import {KeyboardEvent, ChangeEvent, useState} from "react";
+import {ChangeEvent} from "react";
 import {CreateItemForm} from "./CreateItemForm.tsx";
 
 
