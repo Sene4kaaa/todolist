@@ -1,6 +1,7 @@
 import {Filter, Task, Todolist} from './App'
 import {Button} from './Button'
 import {KeyboardEvent, ChangeEvent, useState} from "react";
+import {CreateItemForm} from "./CreateItemForm.tsx";
 
 
 type TodolistItem = {
@@ -24,31 +25,6 @@ export const TodolistItem = ({
                                  deleteTodolist
                              }: TodolistItem) => {
 
-
-    const [taskTitle, setTaskTitle] = useState('')
-    const [error, setError] = useState<string | null>(null)
-
-    const changeTaskTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setTaskTitle(e.currentTarget.value)
-        setError(null)
-    }
-
-    const createTaskOnEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            createTaskHandler()
-        }
-    }
-
-    const createTaskHandler = () => {
-        const trimmedTitle = taskTitle.trim()
-        if (trimmedTitle !== '') {
-            createTask(id, trimmedTitle)
-            setTaskTitle('')
-        } else {
-            setError('Title is required')
-        }
-    }
-
     const changeFilterHandler = (filter: Filter) => {
         changeFilter(id, filter)
     }
@@ -57,26 +33,17 @@ export const TodolistItem = ({
         deleteTodolist(id)
     }
 
+    const createTaskHandler = (title: string) => {
+        createTask(id, title)
+    }
+
     return (
         <div>
             <div className={'container'}>
                 <h3>{title}</h3>
                 <Button title={'x'} onClick={deleteTodolistHandler}/>
             </div>
-            <div>
-                <input
-                    className={error ? 'error' : ''}
-                    value={taskTitle}
-                    onChange={changeTaskTitleHandler}
-                    onKeyDown={createTaskOnEnterHandler}
-                />
-
-                <Button
-                    title={'+'}
-                    onClick={createTaskHandler}/>
-                {error && <div className={'error-message'}>{error}</div>}
-            </div>
-
+            <CreateItemForm onCreateItem={createTaskHandler}/>
             {tasks.length === 0 ? (
                 <p>Тасок нет</p>
             ) : (
