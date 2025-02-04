@@ -1,27 +1,15 @@
-import {Button} from "./Button.tsx";
-import {ChangeEvent, KeyboardEvent, useState} from "react";
+import {type ChangeEvent, type KeyboardEvent, useState} from 'react'
+import {Button} from './Button'
 
-type CreateItemForm = {
+type Props = {
     onCreateItem: (title: string) => void
 }
 
-export const CreateItemForm = ({onCreateItem}: CreateItemForm) => {
-
+export const CreateItemForm = ({ onCreateItem }: Props) => {
     const [title, setTitle] = useState('')
     const [error, setError] = useState<string | null>(null)
 
-    const changeTaskTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value)
-        setError(null)
-    }
-
-    const createTaskOnEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            createTaskHandler()
-        }
-    }
-
-    const createTaskHandler = () => {
+    const createItemHandler = () => {
         const trimmedTitle = title.trim()
         if (trimmedTitle !== '') {
             onCreateItem(trimmedTitle)
@@ -31,17 +19,25 @@ export const CreateItemForm = ({onCreateItem}: CreateItemForm) => {
         }
     }
 
-    return <div>
-        <input
-            className={error ? 'error' : ''}
-            value={title}
-            onChange={changeTaskTitleHandler}
-            onKeyDown={createTaskOnEnterHandler}
-        />
+    const changeItemTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setTitle(event.currentTarget.value)
+        setError(null)
+    }
 
-        <Button
-            title={'+'}
-            onClick={createTaskHandler}/>
-        {error && <div className={'error-message'}>{error}</div>}
-    </div>
+    const createItemOnEnterHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            createItemHandler()
+        }
+    }
+
+    return (
+        <div>
+            <input className={error ? 'error' : ''}
+                   value={title}
+                   onChange={changeItemTitleHandler}
+                   onKeyDown={createItemOnEnterHandler}/>
+            <Button title={'+'} onClick={createItemHandler} />
+            {error && <div className={'error-message'}>{error}</div>}
+        </div>
+    )
 }
