@@ -12,6 +12,7 @@ type TodolistItem = {
     changeFilter: (todolistId: string, filter: Filter) => void
     createTask: (todolistId: string, taskTitle: string) => void
     changeTaskStatus: (todolistId: string, taskId: string, isDone: boolean) => void
+    changeTaskTitle: (todolistId: string, taskId: string, title: string) => void
     deleteTodolist: (todolistId: string) => void
 
 }
@@ -23,6 +24,7 @@ export const TodolistItem = ({
                                  changeFilter,
                                  createTask,
                                  changeTaskStatus,
+                                 changeTaskTitle,
                                  deleteTodolist
                              }: TodolistItem) => {
 
@@ -59,12 +61,16 @@ export const TodolistItem = ({
                             changeTaskStatus(id, task.id, newStatusValue)
                         }
 
+                        const changeTaskTitleHandler = (title: string) => {
+                            changeTaskTitle(id, task.id, title)
+                        }
+
                         return (
                             <li key={task.id} className={task.isDone ? 'is-done' : ''}>
                                 <input type="checkbox"
                                        checked={task.isDone}
                                        onChange={changeTaskStatusHandler}/>
-                                <EditableSpan value={task.title}/>
+                                <EditableSpan value={task.title} onChange={changeTaskTitleHandler}/>
                                 <Button title={'X'} onClick={deleteTaskHandler}/>
                             </li>
                         )
