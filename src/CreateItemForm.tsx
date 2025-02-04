@@ -5,7 +5,7 @@ type Props = {
     onCreateItem: (title: string) => void
 }
 
-export const CreateItemForm = ({ onCreateItem }: Props) => {
+export const CreateItemForm = ({onCreateItem}: Props) => {
     const [title, setTitle] = useState('')
     const [error, setError] = useState<string | null>(null)
 
@@ -36,7 +36,7 @@ export const CreateItemForm = ({ onCreateItem }: Props) => {
                    value={title}
                    onChange={changeItemTitleHandler}
                    onKeyDown={createItemOnEnterHandler}/>
-            <Button title={'+'} onClick={createItemHandler} />
+            <Button title={'+'} onClick={createItemHandler}/>
             {error && <div className={'error-message'}>{error}</div>}
         </div>
     )
