@@ -1,5 +1,5 @@
 import {Filter, Task, Todolist} from './App'
-import {Button} from './Button'
+import {ButtonComponent} from './ButtonComponent.tsx'
 import {ChangeEvent} from "react";
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
@@ -52,7 +52,7 @@ export const TodolistItem = ({
                 <h3>
                     <EditableSpan value={title} onChange={changeTodolistTitleHandler}/>
                 </h3>
-                <Button title={'x'} onClick={deleteTodolistHandler}/>
+                <ButtonComponent title={'x'} onClick={deleteTodolistHandler}/>
             </div>
             <CreateItemForm onCreateItem={createTaskHandler}/>
             {tasks.length === 0 ? (
@@ -79,19 +79,19 @@ export const TodolistItem = ({
                                        checked={task.isDone}
                                        onChange={changeTaskStatusHandler}/>
                                 <EditableSpan value={task.title} onChange={changeTaskTitleHandler}/>
-                                <Button title={'X'} onClick={deleteTaskHandler}/>
+                                <ButtonComponent title={'X'} onClick={deleteTaskHandler}/>
                             </li>
                         )
                     })}
                 </ul>
             )}
             <div>
-                <Button className={filter === 'all' ? 'active-filter' : ''} title={'All'}
-                        onClick={() => changeFilterHandler('all')}/>
-                <Button className={filter === 'active' ? 'active-filter' : ''} title={'Active'}
-                        onClick={() => changeFilterHandler("active")}/>
-                <Button className={filter === 'completed' ? 'active-filter' : ''} title={'Completed'}
-                        onClick={() => changeFilterHandler("completed")}/>
+                <ButtonComponent className={filter === 'all' ? 'active-filter' : ''} title={'All'}
+                                 onClick={() => changeFilterHandler('all')}/>
+                <ButtonComponent className={filter === 'active' ? 'active-filter' : ''} title={'Active'}
+                                 onClick={() => changeFilterHandler("active")}/>
+                <ButtonComponent className={filter === 'completed' ? 'active-filter' : ''} title={'Completed'}
+                                 onClick={() => changeFilterHandler("completed")}/>
 
             </div>
         </div>
