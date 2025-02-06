@@ -43,7 +43,7 @@ export const CreateItemForm = ({onCreateItem}: Props) => {
                 size={"small"}
                 onChange={changeItemTitleHandler}
                 onKeyDown={createItemOnEnterHandler}/>
-            <IconButton onClick={createItemHandler} color={'info'}>
+            <IconButton onClick={createItemHandler} color={'primary'}>
                 <AddBoxIcon />
             </IconButton>
         </div>
