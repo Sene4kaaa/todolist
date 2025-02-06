@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import List from "@mui/material/List";
 import ListItem from '@mui/material/ListItem';
+import Box from '@mui/material/Box';
 
 
 type TodolistItem = {
@@ -81,12 +82,16 @@ export const TodolistItem = ({
                         }
 
                         return (
-                            <ListItem key={task.id} className={task.isDone ? 'is-done' : ''}>
-                                <Checkbox size={"small"}
-                                          color={"secondary"}
-                                          checked={task.isDone}
-                                          onChange={changeTaskStatusHandler}/>
-                                <EditableSpan value={task.title} onChange={changeTaskTitleHandler}/>
+                            <ListItem
+                                key={task.id}
+                                sx={{p: 0, justifyContent: 'space-between', opacity: task.isDone ? 0.5 : 1}}>
+                                <div>
+                                    <Checkbox size={"small"}
+                                              color={"secondary"}
+                                              checked={task.isDone}
+                                              onChange={changeTaskStatusHandler}/>
+                                    <EditableSpan value={task.title} onChange={changeTaskTitleHandler}/>
+                                </div>
                                 <IconButton onClick={deleteTaskHandler}>
                                     <DeleteIcon/>
                                 </IconButton>
@@ -95,7 +100,7 @@ export const TodolistItem = ({
                     })}
                 </List>
             )}
-            <div>
+            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                 <Button variant={filter === 'all' ? 'outlined' : 'text'}
                         color={'primary'}
                         onClick={() => changeFilterHandler('all')}>All</Button>
@@ -105,7 +110,7 @@ export const TodolistItem = ({
                 <Button variant={filter === 'completed' ? 'outlined' : 'text'}
                         color={"success"}
                         onClick={() => changeFilterHandler("completed")}>Completed</Button>
-            </div>
+            </Box>
         </div>
     )
 }
