@@ -5,6 +5,7 @@ import {EditableSpan} from "./EditableSpan.tsx";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete'
 import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
 
 
 type TodolistItem = {
@@ -79,9 +80,10 @@ export const TodolistItem = ({
 
                         return (
                             <li key={task.id} className={task.isDone ? 'is-done' : ''}>
-                                <input type="checkbox"
-                                       checked={task.isDone}
-                                       onChange={changeTaskStatusHandler}/>
+                                <Checkbox size={"small"}
+                                          color={"secondary"}
+                                          checked={task.isDone}
+                                          onChange={changeTaskStatusHandler}/>
                                 <EditableSpan value={task.title} onChange={changeTaskTitleHandler}/>
                                 <IconButton onClick={deleteTaskHandler}>
                                     <DeleteIcon/>
@@ -92,13 +94,13 @@ export const TodolistItem = ({
                 </ul>
             )}
             <div>
-                <Button variant={filter === 'all' ? 'contained' : 'text'}
+                <Button variant={filter === 'all' ? 'outlined' : 'text'}
                         color={'primary'}
                         onClick={() => changeFilterHandler('all')}>All</Button>
-                <Button variant={filter === 'active' ? 'contained' : 'text'}
+                <Button variant={filter === 'active' ? 'outlined' : 'text'}
                         color={'error'}
                         onClick={() => changeFilterHandler("active")}>Active</Button>
-                <Button variant={filter === 'completed' ? 'contained' : 'text'}
+                <Button variant={filter === 'completed' ? 'outlined' : 'text'}
                         color={"success"}
                         onClick={() => changeFilterHandler("completed")}>Completed</Button>
             </div>
