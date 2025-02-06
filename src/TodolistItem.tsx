@@ -9,6 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 import List from "@mui/material/List";
 import ListItem from '@mui/material/ListItem';
 import Box from '@mui/material/Box';
+import {containerSx} from "./TodolistItem.styles.ts";
 
 
 type TodolistItem = {
@@ -100,7 +101,7 @@ export const TodolistItem = ({
                     })}
                 </List>
             )}
-            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+            <Box sx={containerSx}>
                 <Button variant={filter === 'all' ? 'outlined' : 'text'}
                         color={'primary'}
                         onClick={() => changeFilterHandler('all')}>All</Button>
