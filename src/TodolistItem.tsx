@@ -6,6 +6,8 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete'
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
+import List from "@mui/material/List";
+import ListItem from '@mui/material/ListItem';
 
 
 type TodolistItem = {
@@ -63,7 +65,7 @@ export const TodolistItem = ({
             {tasks.length === 0 ? (
                 <p>Тасок нет</p>
             ) : (
-                <ul>
+                <List>
                     {tasks.map(task => {
 
                         const deleteTaskHandler = () => {
@@ -79,7 +81,7 @@ export const TodolistItem = ({
                         }
 
                         return (
-                            <li key={task.id} className={task.isDone ? 'is-done' : ''}>
+                            <ListItem key={task.id} className={task.isDone ? 'is-done' : ''}>
                                 <Checkbox size={"small"}
                                           color={"secondary"}
                                           checked={task.isDone}
@@ -88,10 +90,10 @@ export const TodolistItem = ({
                                 <IconButton onClick={deleteTaskHandler}>
                                     <DeleteIcon/>
                                 </IconButton>
-                            </li>
+                            </ListItem>
                         )
                     })}
-                </ul>
+                </List>
             )}
             <div>
                 <Button variant={filter === 'all' ? 'outlined' : 'text'}
