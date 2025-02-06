@@ -1,10 +1,10 @@
 import {Filter, Task, Todolist} from './App'
-import {ButtonComponent} from './ButtonComponent.tsx'
 import {ChangeEvent} from "react";
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import {EditableSpan} from "./EditableSpan.tsx";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from '@mui/icons-material/Delete'
+import Button from "@mui/material/Button";
 
 
 type TodolistItem = {
@@ -92,13 +92,15 @@ export const TodolistItem = ({
                 </ul>
             )}
             <div>
-                <ButtonComponent className={filter === 'all' ? 'active-filter' : ''} title={'All'}
-                                 onClick={() => changeFilterHandler('all')}/>
-                <ButtonComponent className={filter === 'active' ? 'active-filter' : ''} title={'Active'}
-                                 onClick={() => changeFilterHandler("active")}/>
-                <ButtonComponent className={filter === 'completed' ? 'active-filter' : ''} title={'Completed'}
-                                 onClick={() => changeFilterHandler("completed")}/>
-
+                <Button variant={filter === 'all' ? 'contained' : 'text'}
+                        color={'primary'}
+                        onClick={() => changeFilterHandler('all')}>All</Button>
+                <Button variant={filter === 'active' ? 'contained' : 'text'}
+                        color={'error'}
+                        onClick={() => changeFilterHandler("active")}>Active</Button>
+                <Button variant={filter === 'completed' ? 'contained' : 'text'}
+                        color={"success"}
+                        onClick={() => changeFilterHandler("completed")}>Completed</Button>
             </div>
         </div>
     )
