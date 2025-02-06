@@ -88,7 +88,7 @@ export const TodolistItem = ({
                                 sx={getListItemSx(task.isDone)}>
                                 <div>
                                     <Checkbox size={"small"}
-                                              color={"secondary"}
+                                              color={"success"}
                                               checked={task.isDone}
                                               onChange={changeTaskStatusHandler}/>
                                     <EditableSpan value={task.title} onChange={changeTaskTitleHandler}/>

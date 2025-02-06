@@ -44,7 +44,7 @@ export const App = () => {
         palette: {
             mode: themeMode,
             primary: {
-                main: 'rgba(234,230,4,0.99)',
+                main: 'rgba(38,15,225,0.99)',
             },
         },
     })
