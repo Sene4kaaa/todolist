@@ -1,6 +1,6 @@
 import {type ChangeEvent, type KeyboardEvent, useState} from 'react'
 import Button from "@mui/material/Button";
-import {TextField} from "@mui/material";
+import TextField from "@mui/material/TextField";
 
 type Props = {
     onCreateItem: (title: string) => void
