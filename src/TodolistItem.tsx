@@ -9,7 +9,7 @@ import Checkbox from "@mui/material/Checkbox";
 import List from "@mui/material/List";
 import ListItem from '@mui/material/ListItem';
 import Box from '@mui/material/Box';
-import {containerSx} from "./TodolistItem.styles.ts";
+import {containerSx, getListItemSx} from "./TodolistItem.styles.ts";
 
 
 type TodolistItem = {
@@ -85,7 +85,7 @@ export const TodolistItem = ({
                         return (
                             <ListItem
                                 key={task.id}
-                                sx={{p: 0, justifyContent: 'space-between', opacity: task.isDone ? 0.5 : 1}}>
+                                sx={getListItemSx(task.isDone)}>
                                 <div>
                                     <Checkbox size={"small"}
                                               color={"secondary"}
