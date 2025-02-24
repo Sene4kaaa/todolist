@@ -1,6 +1,6 @@
 import './App.css'
 import {TodolistItem} from './TodolistItem'
-import {useState} from "react";
+import {useReducer, useState} from "react";
 import {v1} from "uuid";
 import {CreateItemForm} from "./CreateItemForm.tsx";
 import AppBar from '@mui/material/AppBar'
@@ -15,6 +15,13 @@ import {NavButton} from "./NavButton.ts";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Switch from "@mui/material/Switch";
+import {
+    changeTodolistFilterAC,
+    changeTodolistTitleAC,
+    createTodolistAC,
+    deleteTodolistAC,
+    todolistsReducer
+} from "./model/todolists-reducer.ts";
 
 export type Todolist = {
     id: string
@@ -53,28 +60,13 @@ export const App = () => {
         setThemeMode(themeMode == 'light' ? 'dark' : 'light')
     }
 
-    const todolistId1 = v1()
-    const todolistId2 = v1()
 
-    const [todolists, setTodolists] = useState<Todolist[]>([
-        {id: todolistId1, title: 'What to learn', filter: 'all'},
-        {id: todolistId2, title: 'What to buy', filter: 'all'},
-    ])
+    const [todolists, dispatchToTodolists] = useReducer(todolistsReducer, [])
 
-    const [tasks, setTasks] = useState<TasksState>({
-        [todolistId1]: [
-            {id: v1(), title: 'HTML&CSS', isDone: true},
-            {id: v1(), title: 'JS', isDone: true},
-            {id: v1(), title: 'ReactJS', isDone: false},
-        ],
-        [todolistId2]: [
-            {id: v1(), title: 'Meat', isDone: true},
-            {id: v1(), title: 'Milk', isDone: false},
-        ],
-    })
+    const [tasks, setTasks] = useState<TasksState>({})
 
     const changeFilter = (todolistId: string, filter: Filter) => {
-        setTodolists(todolists.map(todolist => todolist.id === todolistId ? {...todolist, filter} : todolist))
+        dispatchToTodolists(changeTodolistFilterAC({id: todolistId,filter}))
     }
 
     const deleteTask = (todolistId: string, taskId: string) => {
@@ -95,27 +87,28 @@ export const App = () => {
     }
 
     const deleteTodolist = (todolistId: string) => {
-        setTodolists(todolists.filter(todolist => todolist.id !== todolistId))
+        const action = deleteTodolistAC(todolistId)
+        dispatchToTodolists(action)
         delete tasks[todolistId]
         setTasks({...tasks})
     }
 
     const createTodolist = (title: string) => {
-        const newTodolist: Todolist = {id: v1(), title, filter: 'all'}
-        setTodolists([newTodolist, ...todolists])
-        setTasks({...tasks, [newTodolist.id]: []})
+        const action = createTodolistAC(title)
+        dispatchToTodolists(action)
+        setTasks({...tasks, [action.payload.id]: []})
     }
 
     const changeTodolistTitle = (todolistId: string, title: string) => {
-        setTodolists(todolists.map(todolist => todolist.id === todolistId ? {...todolist, title} : todolist))
+        dispatchToTodolists(changeTodolistTitleAC({id: todolistId, title}))
     }
 
     return (
         <ThemeProvider theme={theme}>
             <div className="app">
-                <CssBaseline />
+                <CssBaseline/>
                 <AppBar position="static" sx={{mb: '30px'}}>
-                    <Toolbar  sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
                         <Container maxWidth={'lg'} sx={containerSx}>
                             <IconButton color="inherit">
                                 <MenuIcon/>
@@ -124,7 +117,7 @@ export const App = () => {
                                 <NavButton>Sign in</NavButton>
                                 <NavButton>Sign up</NavButton>
                                 <NavButton background={theme.palette.primary.dark}>Faq</NavButton>
-                                <Switch color={'default'} onChange={changeMode} />
+                                <Switch color={'default'} onChange={changeMode}/>
                             </div>
                         </Container>
                     </Toolbar>
