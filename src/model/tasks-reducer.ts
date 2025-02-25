@@ -1,10 +1,17 @@
 import type {TasksState} from '../App'
+import {CreateTodolistAction, DeleteTodolistAction} from "./todolists-reducer.ts";
+
 
 const initialState: TasksState = {}
 
 export const tasksReducer = (state: TasksState = initialState, action: Actions): TasksState => {
     switch (action.type) {
-        case '': {
+        case 'create_todolist': {
+            return {...state, [action.payload.id]: []}
+        }
+        case 'delete_todolist': {
+            const newState = {...state}
+            delete newState[action.payload.id]
             return state
         }
         default:
@@ -12,4 +19,5 @@ export const tasksReducer = (state: TasksState = initialState, action: Actions):
     }
 }
 
-type Actions = any
+
+type Actions = CreateTodolistAction | DeleteTodolistAction
